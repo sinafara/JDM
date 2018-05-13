@@ -1,9 +1,19 @@
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 import javax.swing.text.TableView;
 import java.awt.*;
 public class Table {
-    private JTable showDownload;
+
+    public JTable Table ()
+    {
+        JTable table = new JTable(new MyTableModel());
+        return table;
+    }
+
+}
+class MyTableModel extends AbstractTableModel {
     String[] columnNames = {"File name",
             "Last Name",
             "Sport",
@@ -19,28 +29,27 @@ public class Table {
             {"Jane", "White",
                     "Speed reading", new Integer(20), "193 MB"},
             {"Joe", "Brown",
-                    "Pool", new Integer(10), "130 KB"}
-    };
-    public JScrollPane Table ()
-    {
-        TableColumn column = null;
-        showDownload = new JTable(data, columnNames);
-        showDownload.setDefaultEditor(Object.class, null);
-        showDownload.setPreferredSize(new Dimension(1000 , 300));
-        showDownload.setBackground(Color.orange);
-        showDownload.setGridColor(Color.BLACK);
-        showDownload.setForeground(Color.BLACK);
-        showDownload.setFillsViewportHeight(true);
-        for (int i=0;i<5;i++)
-        {
-            column = showDownload.getColumnModel().getColumn(i);
-            if (i==0 || i==3)
-                column.setPreferredWidth(100);
-            else {
-            column.setPreferredWidth(50);
-        }
-        }
-        JScrollPane scrollPane = new JScrollPane(showDownload);
-        return scrollPane;
+                    "Pool", new Integer(10), "130 KB"}};
+
+    public int getColumnCount() {
+        return columnNames.length;
     }
+
+    public int getRowCount() {
+        return data.length;
+    }
+
+    public String getColumnName(int col) {
+        return columnNames[col];
+    }
+
+    public Object getValueAt(int row, int col) {
+        return data[row][col];
+    }
+
+    public Class getColumnClass(int c) {
+        return getValueAt(0, c).getClass();
+    }
+
+
 }

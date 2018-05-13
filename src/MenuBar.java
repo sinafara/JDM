@@ -38,6 +38,12 @@ public class MenuBar {
                 item[i] = new JMenuItem(namesOfIcon[i]);
         }
         item[0].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S , ActionEvent.ALT_MASK));
+        item[0].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewDownload download = new NewDownload();
+            }
+        });
         for (int i=0 ; i<=6 ;i++)
         eachMenu[0].add(item[i]);
         return menuBar;

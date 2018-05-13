@@ -1,10 +1,10 @@
 import javax.swing.*;
-import java.awt.*;
+        import java.awt.*;
 public class FrameWork extends JFrame
 {
     private MenuBar menubar ;
     private Tulbar toolbar;
-    private Table tablebar;
+    public static Table tablebar;
     public FrameWork()
     {
         super("this is JDM");
@@ -12,9 +12,9 @@ public class FrameWork extends JFrame
         menubar = new MenuBar();
         toolbar = new Tulbar();
         tablebar = new Table();
-         setJMenuBar(menubar.MenuBar());
-         add(toolbar.Tulbar());
-         add(tablebar.Table());
+        setJMenuBar(menubar.MenuBar());
+        add(toolbar.Tulbar());
+       add(tablebar.Table());
     }
 
 

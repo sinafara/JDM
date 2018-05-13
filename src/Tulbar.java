@@ -35,6 +35,12 @@ public class Tulbar {
                 dl =  new NewDownload();
             }
         });
+        button[4].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent  arg0) {
+
+            }
+        });
         for (int i=0 ; i<6 ;i++)
             panel.add(button[i]);
         return panel;
