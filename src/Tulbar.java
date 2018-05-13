@@ -38,6 +38,8 @@ public class Tulbar {
         button[4].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent  arg0) {
+                FrameWork.MyTableModel.removeRow(0);
+                FrameWork.MyTableModel.fireTableDataChanged();
 
             }
         });

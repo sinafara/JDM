@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class NewDownload extends JFrame{
     private JFrame frame1;
@@ -52,6 +53,12 @@ public class NewDownload extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if (textField2.getText().equals("")|| textField4.getText().equals(""))
                     JOptionPane.showMessageDialog(frame1 , "fill in the blanks please");
+                else
+                {
+                    Object data[]={textField4.getText() , new Random().nextInt( 700) , (((new Random().nextInt(2))== 0)?"MB":"KB")};
+                    FrameWork.MyTableModel.addRow(data);
+                    frame1.dispose();
+                }
             }
         });
         button2 = new JButton("cancel");
