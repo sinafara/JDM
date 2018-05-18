@@ -1,17 +1,22 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Random;
+ import org.omg.CORBA.CODESET_INCOMPATIBLE;
 
-public class NewDownload extends JFrame{
+ import javax.swing.*;
+        import java.awt.*;
+        import java.awt.event.ActionEvent;
+        import java.awt.event.ActionListener;
+        import java.util.Random;
+
+ import static jdk.nashorn.internal.objects.NativeArray.lastIndexOf;
+
+ public class NewDownload extends JFrame{
     private JFrame frame1;
     private JPanel panel1;
-    private JPanel panel2 , panel3 , panel4;
+    private JPanel panel2 , panel3 , panel4 , panel5;
     private JButton button1;
     private JButton button2;
     private JTextField textField1;
     private JTextField textField2;
+    private JFileChooser fileChooser;
     private JPanel container , container1;
     private JTextField textField3;
     private JTextField textField4;
@@ -46,7 +51,8 @@ public class NewDownload extends JFrame{
         textField4.setToolTipText("ENTER Name of the file");
         panel2.add(textField3 , 0);
         panel2.add(textField4, 1);
-
+        panel2.setBackground(Color.orange);
+        panel1.setBackground(Color.orange);
         button1 = new JButton("OK");
         button1.addActionListener(new ActionListener() {
             @Override
@@ -55,8 +61,10 @@ public class NewDownload extends JFrame{
                     JOptionPane.showMessageDialog(frame1 , "fill in the blanks please");
                 else
                 {
-                    Object data[]={textField4.getText() , new Random().nextInt( 700) , (((new Random().nextInt(2))== 0)?"MB":"KB")};
-                    FrameWork.MyTableModel.addRow(data);
+                    Download download = new Download(textField2.getText());
+                    String fileName=textField2.getText();
+                    download.setFileName(fileName.substring(fileName.lastIndexOf('/')+1));
+                    download.setStatus(0);
                     frame1.dispose();
                 }
             }
@@ -73,12 +81,14 @@ public class NewDownload extends JFrame{
         panel3.add(button2);
         panel4 = new JPanel(new FlowLayout());
         panel4.add(panel3);
-
+        fileChooser = new JFileChooser();
+        panel5 = new JPanel();
+        panel5.add(fileChooser);
         container.add(panel1);
         container.add(panel2);
         container1.add(container);
         container1.add(panel4);
-
+        container1.add(panel5);
         frame1.add(container1);
         frame1.setVisible(true);
 
