@@ -1,3 +1,6 @@
+/**
+ * progress renderer to update the value
+ */
 
 import java.awt.*;
 import javax.swing.*;
